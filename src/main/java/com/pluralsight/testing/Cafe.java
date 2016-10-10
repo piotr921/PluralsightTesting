@@ -12,6 +12,7 @@ public class Cafe {
     public int getMilkInStock() { return milkInStock; }
 
     public Coffee brew(CoffeeType coffeeType){ return brew(coffeeType, 1);}
+
     public Coffee brew(CoffeeType coffeeType, int quantity){
         requirePositive(quantity);
 
@@ -25,6 +26,7 @@ public class Cafe {
         milkInStock -= requiredMilk;
 
         return new Coffee(coffeeType, requiredBeans, requiredMilk);
+        //return new Coffee(null, 1 + requiredBeans, 1 + requiredMilk);
     }
 
     public void restockBeans(int weightInGrams){
