@@ -1,6 +1,10 @@
 package com.pluralsight.testing;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import com.pluralsight.testing.CoffeeType;
 
@@ -10,10 +14,17 @@ public class CafeTest {
     public static final int NO_MILK = 0;
     public static final int NO_BEANS = 0;
 
+    private Cafe cafe;
+
+    @Before
+    public void before(){
+        cafe = new Cafe();
+    }
+
     @Test
     public void canBrewEspresso(){
         // given
-        Cafe cafe = cafeWithBeans();
+        withBeans();
 
         // when
         Coffee coffee = cafe.brew(CoffeeType.Espresso);
@@ -27,7 +38,7 @@ public class CafeTest {
     @Test
     public void brewingEspressoConsumesBeans(){
         // given
-        Cafe cafe = cafeWithBeans();
+        withBeans();
 
         // when
         Coffee coffee = cafe.brew(CoffeeType.Espresso);
@@ -39,7 +50,7 @@ public class CafeTest {
     @Test
     public void canBrewLatte(){
         // given
-        Cafe cafe = cafeWithBeans();
+        withBeans();
         cafe.restockMilk(CoffeeType.Latte.getRequiredMilk());
 
         // when
@@ -73,15 +84,13 @@ public class CafeTest {
     public void latteRequiresMilk(){
 
         // given
-        Cafe cafe = cafeWithBeans();
+        withBeans();
 
         // when
         Coffee coffee = cafe.brew(CoffeeType.Latte);
     }
 
-    private Cafe cafeWithBeans() {
-        Cafe cafe = new Cafe();
+    private void withBeans() {
         cafe.restockBeans(ESPRESSO_BEANS);
-        return cafe;
     }
 }

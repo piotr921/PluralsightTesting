@@ -5,7 +5,7 @@ package com.pluralsight.testing;
  */
 public enum CoffeeType {
     Latte(7, 227),
-    Espresso(7, 0),
+    Espresso(8, 0),
     FilterCoffee(10,0);
 
     private final int requiredBeans;
